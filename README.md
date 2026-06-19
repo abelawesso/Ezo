@@ -10,6 +10,7 @@ Un projet C# .NET 8 pour évaluer des expressions mathématiques avec support de
 - ✖️ Multiplication (`*`)
 - ➗ Division (`/`)
 
+
 ### Fonctions Mathématiques
 - `sqrt(x)` - Racine carrée
 - `sin(x)` - Sinus
