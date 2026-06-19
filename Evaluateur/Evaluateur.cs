@@ -9,14 +9,14 @@ namespace Core
     public class Evaluateur
     {
         //Dictionnaire des fonctions mathématiques supportées (sqrt, sin, cos, tan, log)
-        private static readonly Dictionary<string, Func<decimal, decimal>> Fonctions = new (StringComparer.OrdinalIgnoreCase)
+        private static readonly Dictionary<string, Func<decimal, decimal>> Fonctions = new(StringComparer.OrdinalIgnoreCase)
         {
             { "sqrt", x => (decimal)Math.Sqrt((double)x) },
             { "sin",  x => (decimal)Math.Sin((double)x) },
             { "cos", x =>(decimal) Math.Cos((double) x) },
             { "tan", x =>(decimal) Math.Tan((double) x) },
             { "log", x =>(decimal) Math.Log((double) x) },
-            {"^",x=>(decimal) Math.Exp((double)x)  }
+
         };
 
         //Dictionnaire des opérateurs mathématiques supportés (+,-,*,/)
@@ -25,7 +25,10 @@ namespace Core
             { '+', (a, b) => a + b },
             { '-', (a, b) => a - b },
             { '*', (a, b) => a * b },
-            { '/', (a, b) => b == 0 ? throw new DivisionParZeroException("Division par zéro non autorisée.") : a / b }
+            { '/', (a, b) => b == 0 ? throw new DivisionParZeroException("Division par zéro non autorisée.") : a / b },
+            { '^', (a, b) => (decimal)Math.Pow((double)a, (double)b) },
+            { '(', (a, b) => throw new ExpressionInvalideException("Parenthèse ouvrante inattendue.") },
+            { ')', (a, b) => throw new ExpressionInvalideException("Parenthèse fermante inattendue.")}
         };
 
         public static decimal EvaluationIntegre(string expression)
