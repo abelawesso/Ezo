@@ -22,7 +22,7 @@ namespace Core
             { "-", (1, true) }
         };
 
-        public static Queue<TypeElementInfo> Ordonner(List<TypeElementInfo> elements)
+        public Queue<TypeElementInfo> Ordonner(List<TypeElementInfo> elements)
         {
             var sortie = new Queue<TypeElementInfo>();
             var pile = new Stack<TypeElementInfo>();

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Core
 {
-    internal enum TypeEvaluation
+    public enum TypeEvaluation
     {
         [Description("Évaluation native")]
         Native,
