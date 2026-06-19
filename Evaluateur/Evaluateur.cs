@@ -1,21 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Core.Exceptions;
-using Core.TypeEvaluations;
+﻿using Core;
 
-namespace Core.Evaluateur
+namespace Core
 {
-    /** <summary>
-   * Evaluates a mathematical expression given as a string and returns the result as a decimal.
-   * Supports basic arithmetic operations (+, -, *, /) and functions (sqrt, sin, cos, tan, log).
-   * </summary>
-   * <param name="expression">The mathematical expression to evaluate.</param>
-   * <returns>The result of the evaluated expression as a decimal.</returns>
-   */
-
 
     internal class Evaluateur
     {
@@ -30,13 +16,14 @@ namespace Core.Evaluateur
         };
 
         //Dictionnaire des opérateurs mathématiques supportés (+,-,*,/)
-        private static readonly Dictionary<string, Func<decimal, decimal, decimal>> Operateurs = new(StringComparer.OrdinalIgnoreCase)
-        {
-            { "+", (a, b) => a + b },
-            { "-", (a, b) => a - b },
-            { "*", (a, b) => a * b },
-            { "/", (a, b) => a / b }
+        private static readonly Dictionary<char, Func<decimal, decimal, decimal>> Operateurs = new()
+                    {
+            { '+', (a, b) => a + b },
+            { '-', (a, b) => a - b },
+            { '*', (a, b) => a * b },
+            { '/', (a, b) => b == 0 ? throw new DivideByZeroException("Division par zéro non autorisée.") : a / b }
         };
+
 
         public static decimal Evaluer(string expression, TypeEvaluation typeEvaluation)
         {
@@ -63,5 +50,6 @@ namespace Core.Evaluateur
                 throw new ExpressionInvalideException($"Erreur lors de l'évaluation de l'expression: {ex.Message}", ex);
             }
         }
+    
     }
 }

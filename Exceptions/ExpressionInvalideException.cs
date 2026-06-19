@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Exceptions
-{
+namespace Core
+{ 
     public class ExpressionInvalideException : Exception
     {
         public ExpressionInvalideException() : base("Expression invalide")

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.TypeEvaluations
+namespace Core
 {
-    public enum TypeEvaluation
+    internal enum TypeEvaluation
     {
         [Description("Évaluation native")]
         Native,
