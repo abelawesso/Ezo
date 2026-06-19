@@ -11,5 +11,13 @@ namespace Core.Exceptions
         public ExpressionInvalideException() : base("Expression invalide")
         {
         }
+
+        public ExpressionInvalideException(string message) : base(message)
+        {
+        }
+
+        public ExpressionInvalideException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
     }
 }
