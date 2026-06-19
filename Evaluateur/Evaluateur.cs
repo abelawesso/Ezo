@@ -15,7 +15,8 @@ namespace Core
             { "sin",  x => (decimal)Math.Sin((double)x) },
             { "cos", x =>(decimal) Math.Cos((double) x) },
             { "tan", x =>(decimal) Math.Tan((double) x) },
-            { "log", x =>(decimal) Math.Log((double) x) }
+            { "log", x =>(decimal) Math.Log((double) x) },
+            {"^",x=>(decimal) Math.Exp((double)x)  }
         };
 
         //Dictionnaire des opérateurs mathématiques supportés (+,-,*,/)
@@ -24,7 +25,7 @@ namespace Core
             { '+', (a, b) => a + b },
             { '-', (a, b) => a - b },
             { '*', (a, b) => a * b },
-            { '/', (a, b) => b == 0 ? throw new DivideByZeroException("Division par zéro non autorisée.") : a / b }
+            { '/', (a, b) => b == 0 ? throw new DivisionParZeroException("Division par zéro non autorisée.") : a / b }
         };
 
         public static decimal EvaluationIntegre(string expression)

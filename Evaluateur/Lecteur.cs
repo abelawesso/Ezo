@@ -13,7 +13,7 @@ namespace Core
             "sqrt", "sin", "cos", "tan", "log"
         };
 
-        private static readonly HashSet<char> Operateurs = new() { '+', '-', '*', '/' };
+        private static readonly HashSet<char> Operateurs = new() { '+', '-', '*', '/','^','(', ')' };
    
         public List<TypeElementInfo> Lire(string expression) 
         {
@@ -40,6 +40,16 @@ namespace Core
                 else if(Operateurs.Contains(c))
                 {
                     elements.Add(new TypeElementInfo(TypeElement.Operateur, c.ToString()));
+                    i++;
+                }
+                else if(c == '(')
+                {
+                    elements.Add(new TypeElementInfo(TypeElement.ParentheseOuvrante, c.ToString()));
+                    i++;
+                }
+                else if (c == ')')
+                {
+                    elements.Add(new TypeElementInfo(TypeElement.ParentheseFermante, c.ToString()));
                     i++;
                 }
                 else

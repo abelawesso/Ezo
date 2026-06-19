@@ -11,5 +11,6 @@ namespace Core
         public DivisionParZeroException() : base("Tentative de division par zéro")
         {
         }
+        public DivisionParZeroException (string message) : base(message) { }
     }
 }

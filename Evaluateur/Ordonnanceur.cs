@@ -11,11 +11,12 @@ namespace Core
     {
         private static readonly Dictionary<string, (int Priorite, bool Gauche)> Ordre = new(StringComparer.OrdinalIgnoreCase)
         {
-            { "sqrt", (3, false) },
-            { "sin", (3, false) },
-            { "cos", (3, false) },
-            { "tan", (3, false) },
-            { "log", (3, false) },
+            { "sqrt", (4, false) },
+            { "sin", (4, false) },
+            { "cos", (4, false) },
+            { "tan", (4, false) },
+            { "log", (4, false) },
+            { "^", (3, false) },
             { "*", (2, true) },
             { "/", (2, true) },
             { "+", (1, true) },
@@ -77,7 +78,7 @@ namespace Core
             }
             if (pile.Count == 0 || pile.Peek().Type != TypeElement.ParentheseOuvrante)
                 throw new ExpressionInvalideException("Parenthèses non équilibrées");
-            pile.Pop(); // Retirer la parenthèse ouvrante
+            pile.Pop(); 
         }
     }
 }
