@@ -33,7 +33,7 @@ namespace Core
                 {
                     elements.Add(LireNombre(expression, ref i));
                 }
-                else if(char.IsLetter(c))
+                else if(char.IsLetter(c) && c != '(' && c != ')')
                 {
                     elements.Add(LireFonction(expression, ref i));
                 }
