@@ -24,6 +24,39 @@ namespace Core
             { '/', (a, b) => b == 0 ? throw new DivideByZeroException("Division par zéro non autorisée.") : a / b }
         };
 
+        public static decimal EvaluationIntegre(string expression)
+        {
+            var elements = new Lecteur().Lire(expression);
+            var ordonnance = new Ordonnanceur().Ordonner(elements);
+
+            var pile = new Stack<decimal>();
+            foreach (var element in ordonnance)
+            {
+                switch(element.Type)
+                {
+                    case TypeElement.Nombre:
+                        pile.Push(decimal.Parse(element.Valeur, System.Globalization.CultureInfo.InvariantCulture));
+                        break;
+                    case TypeElement.Operateur:
+                       if(pile.Count<2)
+                            throw new ExpressionInvalideException("Expression invalide: opérateur sans suffisamment d'opérandes.");
+                        decimal droite = pile.Pop(), gauche = pile.Pop();
+                        var resultat = Operateurs[element.Valeur[0]](gauche, droite);
+                        pile.Push(resultat);
+                        break;
+                    case TypeElement.Fonction:
+                        if(pile.Count<1)
+                            throw new ExpressionInvalideException("Expression invalide: fonction sans suffisamment d'opérandes.");
+
+                        pile.Push(Fonctions[element.Valeur](pile.Pop()));
+               
+                        break;
+                }
+            }
+            if(pile.Count != 1)
+                throw new ExpressionInvalideException("Expression invalide: résultat final incorrect.");
+            return pile.Pop();
+        }
 
         public static decimal Evaluer(string expression, TypeEvaluation typeEvaluation)
         {
