@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="../Calculateur/Calculateur/Calculateur.csproj" />
   <Project Path="../Ezotest/Ezotest.csproj" Id="ce2376de-9ed7-4b8e-9b87-9bdaf5672eb3" />
   <Project Path="Core.csproj" />
 </Solution>

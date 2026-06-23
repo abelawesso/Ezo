@@ -26,9 +26,7 @@ namespace Core
             { '-', (a, b) => a - b },
             { '*', (a, b) => a * b },
             { '/', (a, b) => b == 0 ? throw new DivisionParZeroException("Division par zéro non autorisée.") : a / b },
-            { '^', (a, b) => (decimal)Math.Pow((double)a, (double)b) },
-            { '(', (a, b) => throw new ExpressionInvalideException("Parenthèse ouvrante inattendue.") },
-            { ')', (a, b) => throw new ExpressionInvalideException("Parenthèse fermante inattendue.")}
+            { '^', (a, b) => (decimal)Math.Pow((double)a, (double)b) }
         };
 
         public static decimal EvaluationIntegre(string expression)
@@ -55,8 +53,13 @@ namespace Core
                         if(pile.Count<1)
                             throw new ExpressionInvalideException("Expression invalide: fonction sans suffisamment d'opérandes.");
 
-                        pile.Push(Fonctions[element.Valeur](pile.Pop()));
-               
+                        pile.Push(Fonctions[element.Valeur](pile.Pop()));               
+                        break;
+                    case TypeElement.ParentheseOuvrante:
+                        pile.Push(0);
+                        break;
+                    case TypeElement.ParentheseFermante:
+                        pile.Push(1);
                         break;
                 }
             }

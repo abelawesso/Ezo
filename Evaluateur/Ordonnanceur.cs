@@ -58,8 +58,7 @@ namespace Core
     
         private static void EmpilerOperateur(TypeElementInfo elementInfo, Queue<TypeElementInfo> sortie, Stack<TypeElementInfo> pile)
         {
-            var (priorite, gauche) = Ordre[elementInfo.Valeur];
-
+      
             while (pile.Count > 0 &&
                               (pile.Peek().Type == TypeElement.Fonction || pile.Peek().Type == TypeElement.Operateur) &&
                               ((Ordre[pile.Peek().Valeur].Priorite > Ordre[elementInfo.Valeur].Priorite) ||

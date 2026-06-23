@@ -37,7 +37,7 @@ namespace Core
                 {
                     elements.Add(LireFonction(expression, ref i));
                 }
-                else if(Operateurs.Contains(c))
+                else if(Operateurs.Contains(c) && c != '(' && c != ')')
                 {
                     elements.Add(new TypeElementInfo(TypeElement.Operateur, c.ToString()));
                     i++;
